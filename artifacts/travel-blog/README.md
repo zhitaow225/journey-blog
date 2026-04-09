@@ -15,7 +15,118 @@ src/data/
     └── tokyo-rain.ts
 
 public/                       — 静态资源，图片放这里可直接在正文引用
-src/assets/images/            — 封面图（首页缩略图 + 详情页画廊用）
+src/assets/images/            — 本地封面图（首页缩略图 + 详情页画廊用）
+src/lib/cloudinary.ts         — Cloudinary 图床工具函数
+```
+
+---
+
+## Cloudinary 图床
+
+> 使用 Cloudinary 后，图片直接上传到云端，无需放入项目目录，部署更轻量，加载更快。
+
+### 第一步：配置 Cloud Name
+
+在项目的「环境变量」（Secrets）中添加一条：
+
+```
+VITE_CLOUDINARY_CLOUD_NAME = 你的CloudName
+```
+
+Cloud Name 在 Cloudinary 控制台首页右上角可以找到，格式类似 `dxxxxxxxx`。
+
+### 第二步：上传图片
+
+登录 [Cloudinary Media Library](https://cloudinary.com/console/media_library)，把照片拖入上传。
+上传后记录每张图的 **public_id**，例如 `travel/kyoto-1`（就是文件路径，不含域名部分）。
+
+### 第三步：在文章中使用
+
+**方式 A：直接用完整 URL（最简单）**
+
+把 Cloudinary 的分享链接直接放入 `images` 数组，不需要任何 import：
+
+```ts
+import type { Post } from '../types';
+
+export const kyotoMorning: Post = {
+  id: "kyoto-morning",
+  title: "京都的晨光",
+  images: [
+    "https://res.cloudinary.com/你的CloudName/image/upload/travel/kyoto-1.jpg",
+    "https://res.cloudinary.com/你的CloudName/image/upload/travel/kyoto-2.jpg",
+  ],
+  // ...其他字段
+};
+```
+
+**方式 B：用 `cl()` 工具函数生成优化 URL（推荐）**
+
+`cl()` 会自动加上 `quality=auto, format=auto`，图片更小更快：
+
+```ts
+import type { Post } from '../types';
+import { cl } from '../../lib/cloudinary';
+
+export const kyotoMorning: Post = {
+  id: "kyoto-morning",
+  title: "京都的晨光",
+  images: [
+    cl('travel/kyoto-1'),         // 原始尺寸，自动优化质量和格式
+    cl('travel/kyoto-2', 1600),   // 限制最大宽度 1600px
+  ],
+  // ...其他字段
+};
+```
+
+**正文内嵌图片**（Markdown body 中直接用 URL）：
+
+```markdown
+![晨光中的金阁寺](https://res.cloudinary.com/你的CloudName/image/upload/travel/kyoto-golden.jpg)
+```
+
+或用 `cl()` 工具函数：
+
+```ts
+import { cl } from '../../lib/cloudinary';
+
+body: `
+## 第一天
+
+到达京都已是傍晚，落霞与古寺辉映。
+
+![晨光中的金阁寺](${cl('travel/kyoto-golden', 1200)})
+
+次日一早，徒步前往岚山...
+`,
+```
+
+### `cl()` 函数参数说明
+
+```ts
+cl(publicId, width?, opts?)
+```
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `publicId` | `string` | Cloudinary 中的图片路径，如 `travel/kyoto-1` |
+| `width` | `number?` | 可选，限制输出宽度（像素） |
+| `opts.quality` | `string?` | 质量，默认 `'auto'` |
+| `opts.format` | `string?` | 格式，默认 `'auto'`（自动转 webp/avif） |
+| `opts.crop` | `string?` | 裁切模式，如 `'fill'`, `'thumb'` |
+
+### 混用本地图片和 Cloudinary
+
+两种来源可以在同一篇文章混用，`images` 数组里放什么都行：
+
+```ts
+import localPhoto from '../../assets/images/kyoto/extra.png';
+import { cl } from '../../lib/cloudinary';
+
+images: [
+  cl('travel/kyoto-main'),   // Cloudinary
+  localPhoto,                // 本地
+],
 ```
 
 ---
