@@ -93,7 +93,15 @@ export default function PostDetail() {
             </h1>
           </header>
 
-          <div className="prose prose-neutral prose-lg max-w-none prose-p:leading-loose prose-p:font-serif prose-p:text-lg prose-p:text-foreground/90">
+          <div className="prose prose-neutral prose-lg max-w-none
+            prose-p:leading-loose prose-p:font-serif prose-p:text-lg prose-p:text-foreground/90
+            prose-h2:font-serif prose-h2:font-normal prose-h2:text-2xl prose-h2:tracking-tight prose-h2:text-foreground prose-h2:mt-12 prose-h2:mb-4
+            prose-h3:font-serif prose-h3:font-normal prose-h3:text-xl prose-h3:text-foreground
+            prose-strong:font-semibold prose-strong:text-foreground
+            prose-ul:font-serif prose-ul:text-lg prose-ul:text-foreground/90 prose-ul:leading-loose
+            prose-ol:font-serif prose-ol:text-lg prose-ol:text-foreground/90 prose-ol:leading-loose
+            prose-li:my-1
+            prose-hr:border-border">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {post.body}
             </ReactMarkdown>
