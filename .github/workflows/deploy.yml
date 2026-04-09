@@ -42,7 +42,7 @@ jobs:
         working-directory: artifacts/travel-blog
         run: pnpm vite build --config vite.github.config.ts
         env:
-          VITE_BASE_PATH: ${{ vars.BASE_PATH || '/' }}
+          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || '/' }}
           VITE_CLOUDINARY_CLOUD_NAME: ${{ vars.VITE_CLOUDINARY_CLOUD_NAME }}
 
       - name: Setup Pages
