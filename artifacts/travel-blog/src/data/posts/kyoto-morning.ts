@@ -15,8 +15,7 @@ export const kyotoMorning: Post = {
   transport: "新干线",
   images: [
     kyoto1,
-    kyoto2,
-    "https://res.cloudinary.com/dmpuvrumq/image/upload/v1775715410/test1_w15qi5.bmp",
+    kyoto2,  "https://res.cloudinary.com/dmpuvrumq/image/upload/v1775715410/test1_w15qi5.bmp",
   ],
   inlineImages: {
     street: kyoto1,

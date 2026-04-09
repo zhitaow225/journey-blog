@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <title>旅途 · Journey</title>
+    <script>
+      /**
+       * GitHub Pages SPA 路由重定向
+       * 将路径编码为 query string，交由 index.html 的脚本还原。
+       *
+       * pathSegmentsToKeep:
+       *   0 — 自定义域名 或 username.github.io 根仓库
+       *   1 — 部署在 username.github.io/仓库名 子路径时
+       */
+      var pathSegmentsToKeep = 0;
+
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + pathSegmentsToKeep)
+            .join("/") +
+          "/?/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(pathSegmentsToKeep)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search
+            ? "&" + l.search.slice(1).replace(/&/g, "~and~")
+            : "") +
+          l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

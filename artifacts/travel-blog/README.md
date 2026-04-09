@@ -319,3 +319,61 @@ export const posts = [
   // ...
 ];
 ```
+
+---
+
+## 部署到 GitHub Pages
+
+项目已内置 GitHub Actions 工作流，推送到 `main` 分支后会自动构建并发布。
+
+### 第一次配置（只需做一次）
+
+**第一步：把代码推送到 GitHub**
+
+在 GitHub 上新建仓库，把项目推送上去。
+
+**第二步：开启 GitHub Pages**
+
+进入仓库 → **Settings** → **Pages** → Source 选择 **GitHub Actions**，保存。
+
+**第三步：触发首次部署**
+
+推送任意一次代码（或者在 Actions 标签页手动运行 Deploy 工作流），等待约 2 分钟，页面就会上线。
+
+---
+
+### 部署在子路径（仓库名不是 `username.github.io`）
+
+如果你的博客 URL 是 `username.github.io/journey`（不是根域名），需要额外配置两个地方：
+
+**1. 在 GitHub 仓库里添加 Variable**
+
+进入仓库 → **Settings** → **Variables** → **Actions** → **New repository variable**：
+
+| Name | Value |
+|------|-------|
+| `VITE_BASE_PATH` | `/journey/`（换成你的仓库名，末尾加斜杠） |
+
+**2. 修改 `public/404.html` 中的一个数字**
+
+打开 `artifacts/travel-blog/public/404.html`，把第 14 行改为：
+
+```js
+var pathSegmentsToKeep = 1;  // 改成 1
+```
+
+---
+
+### 配置 Cloudinary（如果使用了图床）
+
+进入仓库 → **Settings** → **Variables** → **Actions** → **New repository variable**：
+
+| Name | Value |
+|------|-------|
+| `VITE_CLOUDINARY_CLOUD_NAME` | 你的 Cloud Name |
+
+---
+
+### 自定义域名
+
+在仓库 → **Settings** → **Pages** → **Custom domain** 里填入你的域名，然后在 `artifacts/travel-blog/public/` 目录下新建一个 `CNAME` 文件，内容是你的域名（如 `blog.example.com`），提交推送即可。
