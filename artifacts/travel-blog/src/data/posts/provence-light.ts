@@ -1,6 +1,6 @@
 import type { Post } from '../types';
-import provence1 from '../../assets/images/provence-1.png';
-import provence2 from '../../assets/images/provence-2.png';
+import provence1 from '../../assets/images/provence-light/provence-1.png';
+import provence2 from '../../assets/images/provence-light/provence-2.png';
 
 export const provenceLight: Post = {
   id: "provence-light",

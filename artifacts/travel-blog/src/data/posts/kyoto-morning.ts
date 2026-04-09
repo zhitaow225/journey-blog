@@ -1,6 +1,6 @@
 import type { Post } from "../types";
-import kyoto1 from "../../assets/images/kyoto-1.png";
-import kyoto2 from "../../assets/images/kyoto-2.png";
+import kyoto1 from "../../assets/images/kyoto-morning/kyoto-1.png";
+import kyoto2 from "../../assets/images/kyoto-morning/kyoto-2.png";
 
 export const kyotoMorning: Post = {
   id: "kyoto-morning",
@@ -14,6 +14,10 @@ export const kyotoMorning: Post = {
   days: 4,
   transport: "新干线",
   images: [kyoto1, kyoto2],
+  inlineImages: {
+    "street": kyoto1,
+    "river": kyoto2,
+  },
   body: `## 在城市醒来之前
 
 清晨五点半，鸭川的水面还没有被阳光照到。走在堤岸上，空气里带着淡淡的松木香和昨夜残留的秋意。
@@ -23,7 +27,7 @@ export const kyotoMorning: Post = {
 ## 不需要去哪里
 
 这一天的计划，只有：
-
+![清晨的街道](street)
 - 买一杯手冲抹茶
 - 在鸭川边发呆
 - 看阳光慢慢爬上町屋的屋檐

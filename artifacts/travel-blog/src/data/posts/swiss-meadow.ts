@@ -1,6 +1,6 @@
 import type { Post } from '../types';
-import swiss1 from '../../assets/images/swiss-1.png';
-import swiss2 from '../../assets/images/swiss-2.png';
+import swiss1 from '../../assets/images/swiss-meadow/swiss-1.png';
+import swiss2 from '../../assets/images/swiss-meadow/swiss-2.png';
 
 export const swissMeadow: Post = {
   id: "swiss-meadow",

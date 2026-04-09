@@ -1,6 +1,6 @@
 import type { Post } from '../types';
-import iceland1 from '../../assets/images/iceland-1.png';
-import iceland2 from '../../assets/images/iceland-2.png';
+import iceland1 from '../../assets/images/iceland-silence/iceland-1.png';
+import iceland2 from '../../assets/images/iceland-silence/iceland-2.png';
 
 export const icelandSilence: Post = {
   id: "iceland-silence",

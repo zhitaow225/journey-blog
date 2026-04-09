@@ -1,6 +1,6 @@
 import type { Post } from '../types';
-import tokyo1 from '../../assets/images/tokyo-1.png';
-import tokyo2 from '../../assets/images/tokyo-2.png';
+import tokyo1 from '../../assets/images/tokyo-rain/tokyo-1.png';
+import tokyo2 from '../../assets/images/tokyo-rain/tokyo-2.png';
 
 export const tokyoRain: Post = {
   id: "tokyo-rain",
