@@ -8,6 +8,9 @@ export interface Post {
   weather: string;
   rating: number;
   costPerPerson: string;
+  budget: string;
+  days: number;
+  transport: string;
 }
 
 import kyoto1 from '../assets/images/kyoto-1.png';
@@ -30,6 +33,9 @@ export const posts: Post[] = [
     weather: "微凉，14°C",
     rating: 5,
     costPerPerson: "¥1,200",
+    budget: "¥4,800",
+    days: 4,
+    transport: "新干线",
     images: [kyoto1, kyoto2],
     body: `## 在城市醒来之前
 
@@ -57,6 +63,9 @@ export const posts: Post[] = [
     weather: "晴朗，26°C",
     rating: 4,
     costPerPerson: "¥3,500",
+    budget: "¥7,000",
+    days: 3,
+    transport: "TGV 高铁 + 租车",
     images: [provence1, provence2],
     body: `## 初秋的温柔
 
@@ -82,6 +91,9 @@ export const posts: Post[] = [
     weather: "阴沉，-2°C",
     rating: 5,
     costPerPerson: "¥4,800",
+    budget: "¥9,600",
+    days: 7,
+    transport: "租车自驾",
     images: [iceland1, iceland2],
     body: `## 黑沙滩
 
@@ -107,6 +119,9 @@ export const posts: Post[] = [
     weather: "阵雨转晴，18°C",
     rating: 5,
     costPerPerson: "¥5,200",
+    budget: "¥10,400",
+    days: 5,
+    transport: "瑞士火车通票",
     images: [swiss1, swiss2],
     body: `## 清晨的山谷
 
@@ -132,6 +147,9 @@ export const posts: Post[] = [
     weather: "细雨，12°C",
     rating: 4,
     costPerPerson: "¥2,100",
+    budget: "¥4,200",
+    days: 5,
+    transport: "JR Pass + 地铁",
     images: [tokyo1, tokyo2],
     body: `## 雨中的城市
 

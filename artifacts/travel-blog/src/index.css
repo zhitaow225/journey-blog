@@ -70,8 +70,8 @@
   --elevate-2: rgba(0,0,0, .08);
 
   /* MUJI Aesthetic: Pure whites, off-whites, neutral grays, near black */
-  --background: 0 0% 98%; /* #FAFAFA */
-  --foreground: 0 0% 15%; /* Near black */
+  --background: 60 6% 97%; /* #F9F9F8 warm off-white */
+  --foreground: 0 0% 13%; /* Deep charcoal */
 
   --border: 0 0% 90%;
   --input: 0 0% 90%;
