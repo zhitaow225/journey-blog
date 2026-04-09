@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   workflow_dispatch:
 
 permissions:
@@ -33,16 +33,13 @@ jobs:
           cache: "pnpm"
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
         working-directory: artifacts/travel-blog
         run: pnpm vite build --config vite.github.config.ts
         env:
-          # 自定义域名或 username.github.io 仓库时留空（默认 /）
-          # 部署到 username.github.io/仓库名 时改为 /仓库名/
           VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || '/' }}
-          # 如果使用了 Cloudinary 图床，在仓库 Settings > Variables 里配置：
           VITE_CLOUDINARY_CLOUD_NAME: ${{ vars.VITE_CLOUDINARY_CLOUD_NAME }}
 
       - name: Setup Pages
