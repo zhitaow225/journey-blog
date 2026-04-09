@@ -99,30 +99,76 @@ export const posts = [
 
 ## 在正文中插入图片
 
-正文（`body` 字段）使用 Markdown 格式，插入图片有两种方式：
+正文（`body` 字段）使用 Markdown 格式，插入图片有三种方式：
 
-### 方式一：使用公共目录（推荐）
+---
 
-把图片文件放入 `public/` 文件夹，例如 `public/kyoto-street.jpg`。
+### 方式一：引用 `src/assets/images/` 中的图片（推荐）
 
-然后在 `body` 正文中用绝对路径引用：
+这是和封面图相同的目录，经过 Vite 构建优化，适合高质量摄影图片。
+
+**第一步：** 在文章文件顶部 import 图片：
+
+```ts
+import kyoto1 from '../../assets/images/kyoto-1.png';
+import kyotoStreet from '../../assets/images/kyoto-street.jpg';
+```
+
+**第二步：** 在文章对象中添加 `inlineImages` 映射表，给每张图起一个短名称：
+
+```ts
+export const kyotoMorning: Post = {
+  // ...其他字段...
+  inlineImages: {
+    "kyoto-street": kyotoStreet,   // 短名称: 导入的图片变量
+    "kyoto-river": kyoto1,
+  },
+  body: `...`
+};
+```
+
+**第三步：** 在 `body` 正文里，用短名称作为图片路径：
 
 ```md
 走过一条安静的小巷。
 
-![巷子里的光](./kyoto-street.jpg)
+![清晨的街道](kyoto-street)
 
 转角处，一家茶屋正在开门。
+
+![鸭川河畔](kyoto-river)
+
+这是一种久违的平静。
 ```
 
-> `public/` 中的文件会被直接部署到网站根目录，路径以 `./` 开头即可访问。
+> 短名称可以随意命名，只要 `inlineImages` 里的 key 和正文里写的名称一致即可。
 
-### 方式二：使用外部图片链接
+完整示例参见 `src/data/posts/kyoto-morning.ts`。
 
-直接粘贴图片的完整 URL：
+---
+
+### 方式二：使用 `public/` 文件夹
+
+把图片放入 `public/` 文件夹（例如 `public/paris-cafe.jpg`），直接在正文中引用，**不需要** `inlineImages`：
 
 ```md
-第一天的日落令人难忘。
+咖啡馆门口停着一辆旧自行车。
+
+![巴黎咖啡馆](./paris-cafe.jpg)
+
+窗内透出温暖的黄光。
+```
+
+> 适合临时插图或不需要构建优化的场景。
+
+---
+
+### 方式三：使用外部图片链接
+
+直接粘贴图片的完整 URL，**不需要** `inlineImages`：
+
+```md
+日落时分，海面染成橙红色。
 
 ![日落](https://your-image-host.com/sunset.jpg)
 
@@ -142,7 +188,7 @@ export const posts = [
 - 无序列表第二项
 - 无序列表第三项
 
-![图片描述](./图片文件名.jpg)
+![图片描述](图片短名称或路径)
 ```
 
 ---

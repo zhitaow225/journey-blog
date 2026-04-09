@@ -118,7 +118,21 @@ export default function PostDetail() {
             prose-ul:font-serif prose-ul:text-[1.05rem] prose-ul:text-foreground/85 prose-ul:leading-loose prose-ul:list-none prose-ul:pl-0
             prose-li:my-1.5 prose-li:pl-4 prose-li:border-l prose-li:border-border
             prose-hr:border-border">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                img({ src, alt }) {
+                  const resolved = (post.inlineImages && src && post.inlineImages[src]) ?? src;
+                  return (
+                    <img
+                      src={resolved}
+                      alt={alt ?? ""}
+                      className="w-full rounded-sm my-8 object-cover"
+                    />
+                  );
+                },
+              }}
+            >
               {post.body}
             </ReactMarkdown>
           </div>
