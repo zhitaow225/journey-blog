@@ -13,10 +13,14 @@ export const kyotoMorning: Post = {
   budget: "¥4,800",
   days: 4,
   transport: "新干线",
-  images: [kyoto1, kyoto2],
+  images: [
+    kyoto1,
+    kyoto2,
+    "https://res.cloudinary.com/dmpuvrumq/image/upload/v1775715410/test1_w15qi5.bmp",
+  ],
   inlineImages: {
-    "street": kyoto1,
-    "river": kyoto2,
+    street: kyoto1,
+    river: kyoto2,
   },
   body: `## 在城市醒来之前
 
