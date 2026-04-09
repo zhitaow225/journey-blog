@@ -8,6 +8,7 @@ import Home from "@/pages/Home";
 import PostDetail from "@/pages/PostDetail";
 import MapPage from "@/pages/MapPage";
 import DraftPage from "@/pages/DraftPage";
+import AdminPage from "@/pages/AdminPage";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ function AnimatedRoutes() {
           <Route path="/post/:id" component={PostDetail} />
           <Route path="/map" component={MapPage} />
           <Route path="/draft" component={DraftPage} />
+          <Route path="/admin" component={AdminPage} />
           <Route component={NotFound} />
         </Switch>
       </motion.div>

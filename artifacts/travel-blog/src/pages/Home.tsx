@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
-import { posts } from "../data/posts";
+import { useAllPosts } from "../data/useAllPosts";
 import { Navbar } from "../components/layout/Navbar";
 
 const TYPEWRITER_TEXT = "生活不在别处，下个路口见。";
@@ -50,6 +50,7 @@ const item = {
 };
 
 export default function Home() {
+  const posts = useAllPosts();
   const { displayed, done } = useTypewriter(
     TYPEWRITER_TEXT,
     TYPEWRITER_DELAY,

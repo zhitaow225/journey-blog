@@ -10,7 +10,7 @@ import {
 } from "react-simple-maps";
 import { Navbar } from "../components/layout/Navbar";
 import { ArrowRight, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
-import { posts } from "../data/posts";
+import { useAllPosts } from "../data/useAllPosts";
 import { resolveGeo } from "../data/geoLookup";
 
 const GEO_URL =
@@ -24,20 +24,6 @@ const COLOR_STROKE = "#F9F9F8";
 const DEFAULT_CENTER: [number, number] = [30, 42];
 const DEFAULT_ZOOM = 1;
 
-// 自动从文章 location 字段解析——无需手动填写任何代码
-const geoData = posts
-  .map((p) => ({ post: p, geo: resolveGeo(p.location) }))
-  .filter((x): x is { post: typeof x.post; geo: NonNullable<typeof x.geo> } =>
-    x.geo !== null
-  );
-
-const VISITED = new Set(geoData.map((x) => x.geo.countryCode));
-const MARKERS = geoData.map(({ post, geo }) => ({
-  id: post.id,
-  name: post.location.split("，")[0],
-  coordinates: geo.coordinates,
-  postTitle: post.title,
-}));
 
 interface MarkerData {
   id: string;
@@ -52,6 +38,21 @@ interface MapPosition {
 }
 
 export default function MapPage() {
+  const posts = useAllPosts();
+
+  const geoData = posts
+    .map((p) => ({ post: p, geo: resolveGeo(p.location) }))
+    .filter((x): x is { post: typeof x.post; geo: NonNullable<typeof x.geo> } =>
+      x.geo !== null
+    );
+  const VISITED = new Set(geoData.map((x) => x.geo.countryCode));
+  const MARKERS: MarkerData[] = geoData.map(({ post, geo }) => ({
+    id: post.id,
+    name: post.location.split("，")[0],
+    coordinates: geo.coordinates,
+    postTitle: post.title,
+  }));
+
   const [activeMarker, setActiveMarker] = useState<MarkerData | null>(null);
   const [position, setPosition] = useState<MapPosition>({
     center: DEFAULT_CENTER,

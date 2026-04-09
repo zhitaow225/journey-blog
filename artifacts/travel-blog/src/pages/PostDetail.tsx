@@ -4,13 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { X, ChevronLeft, ChevronRight, MapPin, Star, Wallet, CalendarDays, Train, ArrowLeft, Share2 } from "lucide-react";
-import { posts } from "../data/posts";
+import { useAllPosts } from "../data/useAllPosts";
 import { Navbar } from "../components/layout/Navbar";
 import { ShareModal } from "../components/ShareModal";
 
 export default function PostDetail() {
+  const allPosts = useAllPosts();
   const { id } = useParams<{ id: string }>();
-  const post = posts.find((p) => p.id === id);
+  const post = allPosts.find((p) => p.id === id);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [showShare, setShowShare] = useState(false);
 
