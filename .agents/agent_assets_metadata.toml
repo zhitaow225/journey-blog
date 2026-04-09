@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "LlV5_xv2F8c7sW4Fpu0AI"
@@ -60,3 +59,9 @@ id = "aAk1cGJ8Dn5SkcYoGdrcP"
 uri = "file://artifacts/travel-blog/src/assets/images/tokyo-2.png"
 type = "image"
 title = "Umbrella in the rain"
+
+[[outputs]]
+id = "_797Pis2BxLo3aPzYX-hJ"
+uri = "file://artifacts/travel-blog/README.md"
+type = "text"
+title = "旅途 · 维护手册"
