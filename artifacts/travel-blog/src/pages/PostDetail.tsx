@@ -3,14 +3,16 @@ import { useParams, Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { X, ChevronLeft, ChevronRight, MapPin, Star, Wallet, CalendarDays, Train, ArrowLeft } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, MapPin, Star, Wallet, CalendarDays, Train, ArrowLeft, Share2 } from "lucide-react";
 import { posts } from "../data/posts";
 import { Navbar } from "../components/layout/Navbar";
+import { ShareModal } from "../components/ShareModal";
 
 export default function PostDetail() {
   const { id } = useParams<{ id: string }>();
   const post = posts.find((p) => p.id === id);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [showShare, setShowShare] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -85,15 +87,24 @@ export default function PostDetail() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          {/* Back link */}
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-sans tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors mb-10"
-            data-testid="link-back-home"
-          >
-            <ArrowLeft size={12} strokeWidth={1.5} />
-            所有文章
-          </Link>
+          {/* Back link + Share */}
+          <div className="flex items-center justify-between mb-10">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-1.5 text-xs font-sans tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors"
+              data-testid="link-back-home"
+            >
+              <ArrowLeft size={12} strokeWidth={1.5} />
+              所有文章
+            </Link>
+            <button
+              onClick={() => setShowShare(true)}
+              className="inline-flex items-center gap-1.5 text-xs font-sans tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Share2 size={12} strokeWidth={1.5} />
+              生成长图
+            </button>
+          </div>
 
           <header className="mb-10">
             {/* Location */}
@@ -181,6 +192,11 @@ export default function PostDetail() {
           </div>
         </motion.aside>
       </div>
+
+      {/* Share Modal */}
+      {showShare && (
+        <ShareModal post={post} onClose={() => setShowShare(false)} />
+      )}
 
       {/* Lightbox */}
       <AnimatePresence>
