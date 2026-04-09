@@ -13,8 +13,6 @@ export const icelandSilence: Post = {
   budget: "¥9,600",
   days: 7,
   transport: "租车自驾",
-  coordinates: [-19.0, 63.42],
-  countryCode: "352",
   images: [iceland1, iceland2],
   body: `## 黑沙滩
 

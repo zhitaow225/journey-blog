@@ -13,8 +13,6 @@ export const provenceLight: Post = {
   budget: "¥7,000",
   days: 3,
   transport: "TGV 高铁 + 租车",
-  coordinates: [5.4, 43.8],
-  countryCode: "250",
   images: [provence1, provence2],
   body: `## 初秋的温柔
 

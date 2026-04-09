@@ -13,8 +13,6 @@ export const tokyoRain: Post = {
   budget: "¥4,200",
   days: 5,
   transport: "JR Pass + 地铁",
-  coordinates: [139.69, 35.69],
-  countryCode: "392",
   images: [tokyo1, tokyo2],
   body: `## 雨中的城市
 
