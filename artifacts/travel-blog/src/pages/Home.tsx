@@ -1,8 +1,40 @@
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { posts } from "../data/posts";
 import { Navbar } from "../components/layout/Navbar";
+
+const TYPEWRITER_TEXT = "生活不在别处，下个路口见。";
+const TYPEWRITER_DELAY = 120;
+const TYPEWRITER_START_DELAY = 800;
+
+function useTypewriter(text: string, charDelay: number, startDelay: number) {
+  const [displayed, setDisplayed] = useState("");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    let i = 0;
+
+    timeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        i += 1;
+        setDisplayed(text.slice(0, i));
+        if (i >= text.length) {
+          clearInterval(interval);
+          setDone(true);
+        }
+      }, charDelay);
+
+      return () => clearInterval(interval);
+    }, startDelay);
+
+    return () => clearTimeout(timeout);
+  }, [text, charDelay, startDelay]);
+
+  return { displayed, done };
+}
 
 const container = {
   hidden: { opacity: 0 },
@@ -18,6 +50,12 @@ const item = {
 };
 
 export default function Home() {
+  const { displayed, done } = useTypewriter(
+    TYPEWRITER_TEXT,
+    TYPEWRITER_DELAY,
+    TYPEWRITER_START_DELAY
+  );
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -33,8 +71,22 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-serif text-foreground leading-tight mb-4">
             慢游与记录。
           </h1>
-          <p className="text-muted-foreground font-sans text-base tracking-wider leading-relaxed">
+          <p className="text-muted-foreground font-sans text-base tracking-wider leading-relaxed mb-6">
             A quiet space for unhurried journeys.
+          </p>
+
+          {/* Typewriter line */}
+          <p className="font-serif text-foreground/50 text-sm tracking-widest leading-relaxed min-h-[1.5rem]">
+            {displayed}
+            <motion.span
+              animate={{ opacity: done ? 0 : [1, 0] }}
+              transition={
+                done
+                  ? { duration: 0.4, ease: "easeOut" }
+                  : { duration: 0.6, repeat: Infinity, repeatType: "reverse", ease: "linear" }
+              }
+              className="inline-block w-px h-[1em] bg-foreground/40 ml-0.5 align-middle"
+            />
           </p>
         </motion.div>
 
