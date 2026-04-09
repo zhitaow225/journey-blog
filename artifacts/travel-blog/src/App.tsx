@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import PostDetail from "@/pages/PostDetail";
+import MapPage from "@/pages/MapPage";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ function AnimatedRoutes() {
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/post/:id" component={PostDetail} />
+          <Route path="/map" component={MapPage} />
           <Route component={NotFound} />
         </Switch>
       </motion.div>

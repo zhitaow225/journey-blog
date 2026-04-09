@@ -76,5 +76,8 @@
     "vite-plugin-pwa": "^1.2.0",
     "wouter": "^3.3.5",
     "zod": "catalog:"
+  },
+  "dependencies": {
+    "react-simple-maps": "^3.0.0"
   }
 }
