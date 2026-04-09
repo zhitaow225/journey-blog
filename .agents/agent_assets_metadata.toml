@@ -1,0 +1,62 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "LlV5_xv2F8c7sW4Fpu0AI"
+uri = "file://artifacts/travel-blog/src/assets/images/kyoto-1.png"
+type = "image"
+title = "Kyoto wooden machiya houses"
+
+[[generated]]
+id = "BYKUDC4rXHHRNFbYsvRbb"
+uri = "file://artifacts/travel-blog/src/assets/images/kyoto-2.png"
+type = "image"
+title = "Ceramic tea cup macro"
+
+[[generated]]
+id = "xPwqBzbvtY2Yp5vOgXw7W"
+uri = "file://artifacts/travel-blog/src/assets/images/provence-1.png"
+type = "image"
+title = "Provence lavender field"
+
+[[generated]]
+id = "7dbcCqe11KaeOp8J78Pvf"
+uri = "file://artifacts/travel-blog/src/assets/images/provence-2.png"
+type = "image"
+title = "Rustic window with shutters"
+
+[[generated]]
+id = "-bW-YRgQALUveEQUP1_Pz"
+uri = "file://artifacts/travel-blog/src/assets/images/iceland-1.png"
+type = "image"
+title = "Iceland snowy landscape"
+
+[[generated]]
+id = "krYoJbgth_9A3rtMbKAuy"
+uri = "file://artifacts/travel-blog/src/assets/images/iceland-2.png"
+type = "image"
+title = "Black sand and ice"
+
+[[generated]]
+id = "oHAI7h8Zwd4o8YgjrD1nZ"
+uri = "file://artifacts/travel-blog/src/assets/images/swiss-1.png"
+type = "image"
+title = "Swiss alpine meadow"
+
+[[generated]]
+id = "X-ACpnj5egdvqQsY7FGIv"
+uri = "file://artifacts/travel-blog/src/assets/images/swiss-2.png"
+type = "image"
+title = "Cabin window view"
+
+[[generated]]
+id = "xeHhl4UOr7I-4Ls5WfO9H"
+uri = "file://artifacts/travel-blog/src/assets/images/tokyo-1.png"
+type = "image"
+title = "Tokyo street at dusk"
+
+[[generated]]
+id = "aAk1cGJ8Dn5SkcYoGdrcP"
+uri = "file://artifacts/travel-blog/src/assets/images/tokyo-2.png"
+type = "image"
+title = "Umbrella in the rain"
