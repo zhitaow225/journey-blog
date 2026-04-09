@@ -9,12 +9,24 @@ import {
 } from "react-simple-maps";
 import { Navbar } from "../components/layout/Navbar";
 import { ArrowRight } from "lucide-react";
+import { posts } from "../data/posts";
 
 const GEO_URL =
   "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
-// ISO numeric country codes
-const VISITED = new Set(["392", "250", "352", "756"]); // Japan, France, Iceland, Switzerland
+const COLOR_DEFAULT = "#E8E4DC";
+const COLOR_VISITED = "#C9A87C";
+const COLOR_VISITED_HOVER = "#B8936A";
+const COLOR_STROKE = "#F9F9F8";
+
+// 自动从文章数据推导——新增文章后地图自动更新，无需手动维护
+const VISITED = new Set(posts.map((p) => p.countryCode));
+const MARKERS = posts.map((p) => ({
+  id: p.id,
+  name: p.location.split("，")[0],
+  coordinates: p.coordinates,
+  postTitle: p.title,
+}));
 
 interface MarkerData {
   id: string;
@@ -22,44 +34,6 @@ interface MarkerData {
   coordinates: [number, number];
   postTitle: string;
 }
-
-const MARKERS: MarkerData[] = [
-  {
-    id: "kyoto-morning",
-    name: "京都",
-    coordinates: [135.77, 35.01],
-    postTitle: "京都的清晨",
-  },
-  {
-    id: "tokyo-rain",
-    name: "东京",
-    coordinates: [139.69, 35.69],
-    postTitle: "东京夜雨",
-  },
-  {
-    id: "provence-light",
-    name: "普罗旺斯",
-    coordinates: [5.4, 43.8],
-    postTitle: "蓝色海岸的三天两夜",
-  },
-  {
-    id: "swiss-meadow",
-    name: "格林德瓦",
-    coordinates: [8.04, 46.62],
-    postTitle: "阿尔卑斯的薄雾",
-  },
-  {
-    id: "iceland-silence",
-    name: "维克",
-    coordinates: [-19.0, 63.42],
-    postTitle: "在世界尽头",
-  },
-];
-
-const COLOR_DEFAULT = "#E8E4DC";
-const COLOR_VISITED = "#C9A87C";
-const COLOR_VISITED_HOVER = "#B8936A";
-const COLOR_STROKE = "#F9F9F8";
 
 export default function MapPage() {
   const [activeMarker, setActiveMarker] = useState<MarkerData | null>(null);
@@ -129,7 +103,6 @@ export default function MapPage() {
                 onMouseEnter={() => setActiveMarker(marker)}
                 onMouseLeave={() => setActiveMarker(null)}
               >
-                {/* Pulse ring */}
                 <motion.circle
                   r={8}
                   fill="transparent"
@@ -145,7 +118,6 @@ export default function MapPage() {
                   }}
                   style={{ transformOrigin: "center" }}
                 />
-                {/* Core dot */}
                 <circle
                   r={4}
                   fill="#8B6240"

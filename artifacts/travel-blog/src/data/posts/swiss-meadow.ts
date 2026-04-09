@@ -13,6 +13,8 @@ export const swissMeadow: Post = {
   budget: "¥10,400",
   days: 5,
   transport: "瑞士火车通票",
+  coordinates: [8.04, 46.62],
+  countryCode: "756",
   images: [swiss1, swiss2],
   body: `## 清晨的山谷
 

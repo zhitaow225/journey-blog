@@ -13,6 +13,8 @@ export const kyotoMorning: Post = {
   budget: "¥4,800",
   days: 4,
   transport: "新干线",
+  coordinates: [135.77, 35.01],
+  countryCode: "392",
   images: [kyoto1, kyoto2],
   inlineImages: {
     "street": kyoto1,
