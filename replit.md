@@ -16,6 +16,19 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - **API codegen**: Orval (from OpenAPI spec)
 - **Build**: esbuild (CJS bundle)
 
+## Artifacts
+
+### Travel Blog (`artifacts/travel-blog`)
+Minimalist travel blog "旅途 (Journey)" — React + Vite + Tailwind CSS.
+- Masonry waterfall photo grid homepage with Framer Motion stagger animations
+- Full-bleed image gallery detail pages with Markdown body rendering (react-markdown)
+- Right sidebar with travel metadata (weather, rating, cost)
+- Lightbox for photo viewing
+- **PWA support**: `vite-plugin-pwa` configured with manifest, service worker, and icons
+  - Icons: `public/icon.svg`, `public/icon-192.png`, `public/icon-512.png`, `public/apple-touch-icon.png`
+  - PWA active in production builds; service worker disabled in dev mode
+  - Deploy the app to enable "Add to Home Screen" on mobile devices
+
 ## Key Commands
 
 - `pnpm run typecheck` — full typecheck across all packages
