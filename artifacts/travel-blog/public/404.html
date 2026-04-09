@@ -9,10 +9,10 @@
        * 将路径编码为 query string，交由 index.html 的脚本还原。
        *
        * pathSegmentsToKeep:
-       *   0 — 自定义域名 或 username.github.io 根仓库
-       *   1 — 部署在 username.github.io/仓库名 子路径时
+       *   1 — 部署在 username.github.io/仓库名 子路径时（最常见，默认）
+       *   0 — 自定义域名 或 username.github.io 根仓库时改为 0
        */
-      var pathSegmentsToKeep = 0;
+      var pathSegmentsToKeep = 1;
 
       var l = window.location;
       l.replace(

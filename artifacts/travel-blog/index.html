@@ -31,10 +31,12 @@
             .map(function (s) {
               return s.replace(/~and~/g, "&");
             });
+          // 保留 base 路径（如 /仓库名），避免丢失子路径前缀
+          var base = l.pathname.replace(/\/$/, "");
           window.history.replaceState(
             null,
             null,
-            decoded[0] + (decoded[1] ? "?" + decoded[1] : "") + l.hash
+            base + decoded[0] + (decoded[1] ? "?" + decoded[1] : "") + l.hash
           );
         }
       })(window.location);
